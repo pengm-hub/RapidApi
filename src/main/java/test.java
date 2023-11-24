@@ -1,0 +1,30 @@
+public class test{
+
+    public static void main(String[] args) {
+        String playHtml = "{\"apiversion\":\"apiversion_574a634b-d7ae-4446-b364-0d2d2feb0500\",\"id\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"group\":null,\"method\":\"GET\",\"name\":\"Teams list\",\"route\":\"/teams/list.json\",\"response\":\"\",\"payload\":\"\",\"code\":200,\"description\":\"Getting a list of the teams from our database\",\"pricing\":null,\"displayResponse\":false,\"isMockResponse\":false,\"isGraphQL\":false,\"summary\":\"\",\"endpointPath\":null,\"externalDocs\":null,\"graphQLSchema\":null,\"params\":{\"optional\":[{\"createdAt\":1579035950589,\"id\":\"routeparameter_a91a7d63-b680-4b13-9665-42d6bdb399d6\",\"name\":\"size\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"Between 1 and 100, the number of teams per page\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035950595,\"id\":\"routeparameter_496bf42b-0692-4c1f-854d-4046719fb9d1\",\"name\":\"page\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"The number of page, as this endpoint uses pagination\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844165,\"updatedAt\":1579035950586,\"id\":\"routeparameter_1a23b62c-370f-41fa-b5c2-a9f5ce73c7de\",\"name\":\"country_id\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"ID of a country in case we want teams from only one country\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844171,\"updatedAt\":1579035950592,\"id\":\"routeparameter_32fbce13-9f6b-4e08-99a8-440250525cbf\",\"name\":\"federation_id\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"ID of a country in case we want teams from only one federation, these will be national teams\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844171,\"updatedAt\":1579035950595,\"id\":\"routeparameter_700ac2da-8f22-486b-8d3e-e4c499231e96\",\"name\":\"language\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"STRING\",\"condition\":\"OPTIONAL\",\"description\":\"2 letter ISO of the language in which we want the data in\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"}],\"required\":[],\"headers\":[],\"constant\":[],\"parameters\":[{\"createdAt\":1579035950589,\"id\":\"routeparameter_a91a7d63-b680-4b13-9665-42d6bdb399d6\",\"name\":\"size\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"Between 1 and 100, the number of teams per page\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035950595,\"id\":\"routeparameter_496bf42b-0692-4c1f-854d-4046719fb9d1\",\"name\":\"page\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"The number of page, as this endpoint uses pagination\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844165,\"updatedAt\":1579035950586,\"id\":\"routeparameter_1a23b62c-370f-41fa-b5c2-a9f5ce73c7de\",\"name\":\"country_id\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"ID of a country in case we want teams from only one country\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844171,\"updatedAt\":1579035950592,\"id\":\"routeparameter_32fbce13-9f6b-4e08-99a8-440250525cbf\",\"name\":\"federation_id\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"NUMBER\",\"condition\":\"OPTIONAL\",\"description\":\"ID of a country in case we want teams from only one federation, these will be national teams\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"},{\"createdAt\":1579035844171,\"updatedAt\":1579035950595,\"id\":\"routeparameter_700ac2da-8f22-486b-8d3e-e4c499231e96\",\"name\":\"language\",\"endpoint\":\"apiendpoint_6a467e44-2be3-440e-aa48-5eb89ca25855\",\"value\":\"\",\"querystring\":true,\"paramType\":\"STRING\",\"condition\":\"OPTIONAL\",\"description\":\"2 letter ISO of the language in which we want the data in\",\"status\":\"ACTIVE\",\"type\":\"routeparameter\"}]}}";
+        String res = deleteUnusefulStr(playHtml);
+        System.out.println(playHtml.length());
+        System.out.println(res.length());
+    }
+
+    public static String deleteUnusefulStr(String playHtml){
+        String[] unusefulStr = new String[]{"\"apiversion\"","\"group\"","\"createdAt\"","\"updatedAt\"","\"id\"","\"endpoint\""};
+        for (int i = 0; i < unusefulStr.length; i++) {
+            while(true){
+                if(playHtml.contains(unusefulStr[i])){
+                    int beginIndex = playHtml.indexOf(unusefulStr[i]);
+                    int endIndex = playHtml.substring(beginIndex).indexOf(",");
+                    String str = playHtml.substring(beginIndex,endIndex+beginIndex+1);
+                    System.out.println(str);
+                    String tmpplayHtml = playHtml.replace(str,"");
+                    playHtml = tmpplayHtml;
+                    System.out.println(playHtml);
+                }else {
+                    break;
+                }
+            }
+        }
+        return playHtml;
+    }
+
+}
